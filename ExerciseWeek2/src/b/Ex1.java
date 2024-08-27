@@ -15,20 +15,31 @@ class Student {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Score of " + name + " is ");
 
-		do {
+		boolean validvariable = false;
+		while (!validvariable) {
 			try {
 				score = input.nextDouble();
+				if (score >= 0 && score <= 10) {
+					validvariable = true;
+				} else {
+					System.out.println("Invalid, please enter a value between 0 and 10:");
+				}
 			} catch (InputMismatchException e) {
-				score = -1;
+				System.out.println("Invalid input. Please enter a number:");
+				input.nextLine();
 			}
 
-			if (score > 10 || score < 0) {
-				System.out.println("Invalid, please enter right value:");
-			}
-			input.nextLine();
-		} while (score > 10 || score < 0);
+		}
 
 		input.close();
+	}
+
+	void solve() {
+		if (score < 3) {
+			System.out.println("Fail");
+		} else {
+			System.out.println("Pass");
+		}
 	}
 }
 
@@ -37,11 +48,7 @@ public class Ex1 {
 		Student A = new Student();
 		A.setName("Hai");
 		A.inputScore();
-		if(A.score >= 0 || A.score < 3) {
-			System.out.println("Fail");
-		}else {
-			System.out.println("Pass");
-		}
+		A.solve();
 
 	}
 }
